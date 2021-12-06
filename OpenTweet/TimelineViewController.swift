@@ -77,7 +77,9 @@ extension TimelineViewController {
   }
 
   func configureDataSource() {
-    // Register andd configure each cell for display
+    let items = JSONManager.shared.parseJson()
+
+    // Register and configure each cell for display
     let cellRegistration = UICollectionView.CellRegistration<TweetCell, Tweet> { [weak self] (cell, indexPath, tweet) in
       cell.authorLabel.text = tweet.author
 
@@ -86,6 +88,8 @@ extension TimelineViewController {
       self?.dateFormatter.dateStyle = .short
       self?.dateFormatter.timeStyle = .short
       cell.dateLabel.text = self?.dateFormatter.string(from: tweet.date)
+
+      cell.showsBar = indexPath.item != items.count - 1
     }
 
     dataSource = UICollectionViewDiffableDataSource<Section, Tweet>(collectionView: collectionView, cellProvider: { collectionView, indexPath, itemIdentifier in
@@ -93,10 +97,9 @@ extension TimelineViewController {
     })
 
     // Data population
-    let tweets = JSONManager.shared.parseJson()
     var snapshot = NSDiffableDataSourceSnapshot<Section, Tweet>()
     snapshot.appendSections([.main])
-    snapshot.appendItems(tweets, toSection: .main)
+    snapshot.appendItems(items, toSection: .main)
     dataSource.apply(snapshot, animatingDifferences: false)
   }
 
