@@ -10,6 +10,8 @@ import UIKit
 
 final class TimelineViewController: UIViewController {
 
+  // MARK: Properties
+
   enum Section {
     case main
   }
@@ -33,6 +35,8 @@ final class TimelineViewController: UIViewController {
     return lazyGradient
   }()
 
+  // MARK: View Cycle
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
     configureHierarchy()
@@ -40,6 +44,8 @@ final class TimelineViewController: UIViewController {
 	}
 
 }
+
+// MARK: - Configuration and Layout
 
 extension TimelineViewController {
 
