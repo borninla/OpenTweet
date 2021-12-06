@@ -90,6 +90,25 @@ extension TimelineViewController {
       cell.dateLabel.text = self?.dateFormatter.string(from: tweet.date)
 
       cell.showsBar = indexPath.item != items.count - 1
+
+      guard let avatarUrl = tweet.avatar else {
+        cell.avatarImageView.image = UIImage(named: "allthethings")
+        return
+      }
+
+      URLSession.shared.dataTask(with: avatarUrl) { (data, response, error) in
+        guard let data = data else { return }
+
+        if let error = error {
+          print("Error: \(error.localizedDescription)")
+          return
+        }
+
+        let image = UIImage(data: data)
+        DispatchQueue.main.async {
+          cell.avatarImageView.image = image
+        }
+      }.resume()
     }
 
     dataSource = UICollectionViewDiffableDataSource<Section, Tweet>(collectionView: collectionView, cellProvider: { collectionView, indexPath, itemIdentifier in

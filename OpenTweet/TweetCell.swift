@@ -35,6 +35,7 @@ final class TweetCell: UICollectionViewCell {
   }
 
   private func configure() {
+    avatarImageView.translatesAutoresizingMaskIntoConstraints = false
     authorLabel.translatesAutoresizingMaskIntoConstraints = false
     contentLabel.translatesAutoresizingMaskIntoConstraints = false
     dateLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -56,18 +57,25 @@ final class TweetCell: UICollectionViewCell {
 
     barView.backgroundColor = .secondarySystemBackground
 
+    avatarImageView.contentMode = .scaleAspectFit
+
+    avatarImageView.widthAnchor.constraint(equalToConstant: 32).isActive = true
+    avatarImageView.heightAnchor.constraint(equalToConstant: 32).isActive = true
+
+    contentView.addSubview(avatarImageView)
     contentView.addSubview(authorLabel)
     contentView.addSubview(contentLabel)
     contentView.addSubview(dateLabel)
     contentView.addSubview(barView)
 
-    let views = ["author": authorLabel, "content": contentLabel, "date": dateLabel, "bar": barView]
+    let views = ["avatar": avatarImageView, "author": authorLabel, "content": contentLabel, "date": dateLabel, "bar": barView]
     var constraints = [NSLayoutConstraint]()
+    constraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:|-[avatar]", options: [], metrics: nil, views: views))
     constraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:|-[author]-|", options: [], metrics: nil, views: views))
     constraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:|-[content]-|", options: [], metrics: nil, views: views))
     constraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:|-[date]-|", options: [], metrics: nil, views: views))
     constraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:|-[bar]-|", options: [], metrics: nil, views: views))
-    constraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "V:|-[author]-[content]-[date]-16-[bar(==2)]|", options: [], metrics: nil, views: views))
+    constraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "V:|-[avatar]-[author]-[content]-[date]-16-[bar(==2)]|", options: [], metrics: nil, views: views))
     NSLayoutConstraint.activate(constraints)
   }
 
