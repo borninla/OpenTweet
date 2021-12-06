@@ -206,7 +206,7 @@
 				TargetAttributes = {
 					009C4C671D9F0CD600F0BC6C = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = QPU8QS3E62;
+						DevelopmentTeam = Z4V74C49Z2;
 						ProvisioningStyle = Automatic;
 					};
 					009C4C7B1D9F0CD600F0BC6C = {
@@ -451,11 +451,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = QPU8QS3E62;
+				DEVELOPMENT_TEAM = Z4V74C49Z2;
 				INFOPLIST_FILE = OpenTweet/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.opentable.OpenTweet;
+				PRODUCT_BUNDLE_IDENTIFIER = com.andrewlvovsky.OpenTweet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 			};
@@ -465,11 +465,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = QPU8QS3E62;
+				DEVELOPMENT_TEAM = Z4V74C49Z2;
 				INFOPLIST_FILE = OpenTweet/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.opentable.OpenTweet;
+				PRODUCT_BUNDLE_IDENTIFIER = com.andrewlvovsky.OpenTweet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 			};
