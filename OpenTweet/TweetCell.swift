@@ -58,6 +58,8 @@ final class TweetCell: UICollectionViewCell {
     barView.backgroundColor = .secondarySystemBackground
 
     avatarImageView.contentMode = .scaleAspectFit
+    avatarImageView.layer.masksToBounds = true
+    avatarImageView.layer.cornerRadius = CGFloat(16)
 
     avatarImageView.widthAnchor.constraint(equalToConstant: 32).isActive = true
     avatarImageView.heightAnchor.constraint(equalToConstant: 32).isActive = true
