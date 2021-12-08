@@ -13,6 +13,8 @@ final class TweetCell: UICollectionViewCell {
 
   static let reuseIdentifier = "tweet-cell-reuseidentifier"
 
+  let avatarImageDimension: CGFloat = 48
+
   let authorLabel = UILabel()
   let contentLabel = UILabel()
   let dateLabel = UILabel()
@@ -59,10 +61,10 @@ final class TweetCell: UICollectionViewCell {
 
     avatarImageView.contentMode = .scaleAspectFit
     avatarImageView.layer.masksToBounds = true
-    avatarImageView.layer.cornerRadius = CGFloat(16)
+    avatarImageView.layer.cornerRadius = CGFloat(avatarImageDimension / 2)
 
-    avatarImageView.widthAnchor.constraint(equalToConstant: 32).isActive = true
-    avatarImageView.heightAnchor.constraint(equalToConstant: 32).isActive = true
+    avatarImageView.widthAnchor.constraint(equalToConstant: avatarImageDimension).isActive = true
+    avatarImageView.heightAnchor.constraint(equalToConstant: avatarImageDimension).isActive = true
 
     contentView.addSubview(avatarImageView)
     contentView.addSubview(authorLabel)
@@ -71,14 +73,17 @@ final class TweetCell: UICollectionViewCell {
     contentView.addSubview(barView)
 
     let views = ["avatar": avatarImageView, "author": authorLabel, "content": contentLabel, "date": dateLabel, "bar": barView]
+
     var constraints = [NSLayoutConstraint]()
-    constraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:|-[avatar]", options: [], metrics: nil, views: views))
-    constraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:|-[author]-|", options: [], metrics: nil, views: views))
-    constraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:|-[content]-|", options: [], metrics: nil, views: views))
-    constraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:|-[date]-|", options: [], metrics: nil, views: views))
+    constraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:|-16-[avatar]-8-[author]", options: [], metrics: nil, views: views))
+//    constraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:|-16-[author]-16-|", options: [], metrics: nil, views: views))
+    constraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:|-16-[content]-16-|", options: [], metrics: nil, views: views))
+    constraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:|-16-[date]-16-|", options: [], metrics: nil, views: views))
     constraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:|-[bar]-|", options: [], metrics: nil, views: views))
-    constraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "V:|-[avatar]-[author]-[content]-[date]-16-[bar(==2)]|", options: [], metrics: nil, views: views))
+    constraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "V:|-[avatar]-[content]-[date]-16-[bar(==2)]|", options: [], metrics: nil, views: views))
     NSLayoutConstraint.activate(constraints)
+
+    avatarImageView.centerYAnchor.constraint(equalTo: authorLabel.centerYAnchor).isActive = true
   }
 
   private func updateBar() {

@@ -56,9 +56,9 @@ extension TimelineViewController {
     // Set up collection view
     collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
     collectionView.translatesAutoresizingMaskIntoConstraints = false
-    view.addSubview(collectionView)
     collectionView.backgroundColor = .systemBackground
 
+    view.addSubview(collectionView)
     view.addSubview(gradientView)
 
     // Set up constraints, with the gradient view anchored to the bottom of the screen.
@@ -131,7 +131,7 @@ extension TimelineViewController {
     let group = NSCollectionLayoutGroup.horizontal(layoutSize: layoutSize, subitem: item, count: 1)
 
     let section = NSCollectionLayoutSection(group: group)
-    section.contentInsets = NSDirectionalEdgeInsets(top: 16, leading: 16, bottom: 16, trailing: 16)
+    section.contentInsets = NSDirectionalEdgeInsets(top: 16, leading: 0, bottom: 16, trailing: 0)
     section.interGroupSpacing = 16
 
     let layout = UICollectionViewCompositionalLayout(section: section)
@@ -139,4 +139,3 @@ extension TimelineViewController {
   }
 
 }
-
